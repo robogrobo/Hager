@@ -49,7 +49,7 @@ void loop() {
   if(Serial.available() > 0) {
     char command = Serial.read();
     switch(command) {
-      case 'T':  // send total impuls count
+      case 'S':  // send total impuls count
         Serial.print("echo ");
         Serial.print(impuls);
         Serial.println(" | nc barbados 4919");
@@ -59,6 +59,12 @@ void loop() {
         break;
       case 'D':  // debug mode
         debug = !debug;
+        break;
+      case 'H':  // help
+        Serial.print("This is the hager ec352 impuls counter help.\nBasic commandos:\n");
+        Serial.print("S  send impuls count to server\n");
+        Serial.print("R  reset impuls count\n");
+        Serial.println("D  toggle debug mode\n");
         break;
       default:
         return;
