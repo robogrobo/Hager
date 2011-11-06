@@ -8,14 +8,14 @@ author: dominik grob
 const int ledPin = 9;
 const int sensorPin = 0;
 
-unsigned int impuls = 0;
+long impuls = 0;
 int sensorVal = 0;
 int threshold = 200;
 int sensorDelay = 200;
 
-byte ledOff = 1;
+boolean ledOff = 1;
 long prevMillis = 0;
-byte debug = 0;
+boolean debug = 0;
 
 void setup() {  
   pinMode(ledPin, OUTPUT);
@@ -35,14 +35,14 @@ void loop() {
     prevMillis = curMillis;
 
     digitalWrite(ledPin, HIGH);
-    ledOff = 0;
+    ledOff = false;
     
     if(debug) {
       Serial.println(impuls, DEC);
     }
   } else if(sensorVal < threshold) {
     digitalWrite(ledPin, LOW);
-    ledOff = 1;
+    ledOff = true;
   }
   
   // script commands
@@ -58,7 +58,7 @@ void loop() {
         impuls = 0;
         break;
       case 'D':  // debug mode
-        debug = (debug == 0) ? 1 : 0;
+        debug = !debug;
         break;
       default:
         return;
