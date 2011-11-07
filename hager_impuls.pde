@@ -38,7 +38,8 @@ void loop() {
     ledOff = false;
 
     if(debug) {
-      Serial.println(impuls, DEC);
+      Serial.print(impuls, DEC);
+      Serial.print("\n");
     }
   } else if(sensorVal < threshold) {
     digitalWrite(ledPin, LOW);
@@ -52,7 +53,7 @@ void loop() {
     case 'S': // send total impuls count and reset
       Serial.print("echo ");
       Serial.print(impuls);
-      Serial.println(" | nc barbados 4919");
+      Serial.print(" | nc barbados 4919\n");
       impuls = 0;
       break;
     case 'R': // reset impuls count
@@ -63,7 +64,8 @@ void loop() {
       break;
     case 'G': // get impuls counter
       Serial.print("current impuls count: ");
-      Serial.println(impuls);
+      Serial.print(impuls);
+      Serial.print("\n");
       break;
     case 'H': // help
       Serial.print("This is the hager ec352 impuls counter help.\nBasic commandos:\n");
