@@ -68,11 +68,12 @@ void loop() {
       Serial.print("\n");
       break;
     case 'H': // help
-      Serial.print("This is the hager ec352 impuls counter help.\nBasic commandos:\n");
-      Serial.print("S  send impuls count to server\n");
-      Serial.print("R  reset impuls count\n");
-      Serial.print("D  toggle debug mode\n");
-      Serial.println("G  get impuls count\n");
+      Serial.print("this is the hager ec352 impuls counter help.\nbasic commandos (capital letters):\n");
+      Serial.print("s send impuls count to server\n");
+      Serial.print("r reset impuls count\n");
+      Serial.print("d toggle debug mode\n");
+      Serial.print("g get impuls count\n");
+      Serial.flush();
       break;
     default:
       return;
