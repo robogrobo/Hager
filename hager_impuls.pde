@@ -21,7 +21,7 @@ void setup() {
   pinMode(ledPin, OUTPUT);
   pinMode(sensorPin, INPUT);
 
-  Serial.begin(9600);
+  Serial.begin(115200);
   Serial.println("Serial ready");
 }
 
@@ -51,9 +51,9 @@ void loop() {
     char command = Serial.read();
     switch(command) {
     case 'S': // send total impuls count and reset
-      Serial.print("echo ");
+      Serial.print("echo \"");
       Serial.print(impuls);
-      Serial.print(" | nc barbados 4919\n");
+      Serial.println("\" | nc barbados  4919");
       impuls = 0;
       break;
     case 'R': // reset impuls count
