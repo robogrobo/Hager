@@ -9,9 +9,18 @@
 PORT=4919
 FIELD1='entry.1.single'
 FORMKEY=''
+LOG_FILE=/Users/honzo/Documents/bot/hager.log
 
 while true
 do
-  impuls=$(nc -l $PORT)
-  curl -s -d $FIELD1'='$impuls 'https://docs.google.com/spreadsheet/formResponse?formkey='$FORMKEY > /dev/null 2>&1
+  impuls=$(nc -l -d $PORT)
+  log_date=$(date)
+
+  if [ ! -z $impuls ]
+  then
+    curl -s -d $FIELD1'='$impuls 'https://docs.google.com/spreadsheet/formResponse?formkey='$FORMKEY > /dev/null 2>&1
+    echo $log_date" "$impuls >> $LOG_FILE
+  else
+    echo $log_date" no value received" >> $LOG_FILE
+  fi
 done
