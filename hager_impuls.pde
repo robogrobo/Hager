@@ -53,7 +53,7 @@ void loop() {
     case 'S': // send total impuls count and reset
       Serial.print("echo \"");
       Serial.print(impuls);
-      Serial.println("\" | nc barbados  4919");
+      Serial.println("\" | nc barbados.local 4919");
       impuls = 0;
       break;
     case 'R': // reset impuls count
