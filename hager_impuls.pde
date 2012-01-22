@@ -21,8 +21,8 @@ void setup() {
   pinMode(ledPin, OUTPUT);
   pinMode(sensorPin, INPUT);
 
-  Serial.begin(115200);
-  Serial.println("Serial ready");
+  Serial.begin(9600);     // /dev/tts/1
+  //Serial.begin(115200); // /dev/tts/0
 }
 
 void loop() {
@@ -51,29 +51,13 @@ void loop() {
     char command = Serial.read();
     switch(command) {
     case 'S': // send total impuls count and reset
-      Serial.print("echo \"");
-      Serial.print(impuls);
-      Serial.println("\" | nc barbados.local 4919");
+      Serial.println(impuls);
       impuls = 0;
-      break;
-    case 'R': // reset impuls count
-      impuls = 0;
-      break;
-    case 'D': // debug mode
-      debug = !debug;
-      break;
-    case 'G': // get impuls counter
-      Serial.print("current impuls count: ");
-      Serial.print(impuls);
-      Serial.print("\n");
-      break;
-    case 'H': // help
-      Serial.print("this is the hager ec352 impuls counter help.\nbasic commandos (capital letters):\n");
-      Serial.print("s send impuls count to server\n");
-      Serial.print("r reset impuls count\n");
-      Serial.print("d toggle debug mode\n");
-      Serial.print("g get impuls count\n");
-      Serial.flush();
+
+      digitalWrite(ledPin, HIGH);
+      delay(1000);
+      digitalWrite(ledPin, LOW);
+
       break;
     default:
       return;
